@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-
+        android:layout_marginTop="-40dp"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
+
 
         <ImageView
             android:layout_width="@dimen/logo_w_h"
@@ -20,67 +22,30 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:src="@drawable/logo2" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HALOGEN"
+            android:textAlignment="center"
+            android:layout_marginTop="-10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SECURITY"
+            android:textAlignment="center"
+            />
+
 
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/firstnameTextInputLayout"
+            android:id="@+id/emailTextInputLayout"
             android:layout_marginTop="6dp"
             android:layout_marginLeft="36dp"
             android:layout_marginRight="36dp"
             android:layout_marginBottom="6dp">
-
-            <EditText
-                android:id="@+id/firstnameTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/firstname"
-                android:inputType="text"
-                android:maxLines="1"
-
-                android:singleLine="true"
-                android:textColor="@android:color/white" />
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/lastnameTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/lastname"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="@android:color/white" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/phoneTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/mobile_phone"
-                android:inputType="phone"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="@android:color/white" />
-        </android.support.design.widget.TextInputLayout>
-
-
-
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/emailTextField"
@@ -90,13 +55,18 @@
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/text_color"/>
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/passwordTextInputLayout"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
+            android:layout_marginBottom="6dp">
 
             <EditText
                 android:id="@+id/passwordTextField"
@@ -109,7 +79,8 @@
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/text_color"
+                app:counterOverflowTextAppearance="@style/CharacterOverflow"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -118,21 +89,18 @@
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:background="@color/colorAccent"
             android:text="@string/action_sign_in_short"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="-6dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
+            android:layout_marginBottom="1dp"
+            android:onClick="registerButtonClicked"
+            />
 
-        <Button
-            android:id="@+id/btn_reset_password"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@null"
-            android:text="@string/btn_forgot_password"
-            android:textAllCaps="false"
-            android:textColor="@color/colorAccent" />
+
 
         <!-- Link to Login Screen -->
 
@@ -140,18 +108,17 @@
             android:id="@+id/sign_in_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
             android:background="@null"
             android:text="@string/btn_link_to_login"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/colorAccent"
             android:textSize="15dp" />
     </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="20dp"
         android:visibility="gone" />

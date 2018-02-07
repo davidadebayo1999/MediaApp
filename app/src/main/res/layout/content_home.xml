@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="app.kbuild.com.mediaapp.HomeActivity"
+    tools:showIn="@layout/app_bar_home"
+    android:orientation="vertical"
+
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="15dp"
+    android:weightSum="6">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:weightSum="3"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_bg"
+                >
+
+                <ImageView
+                    android:id="@+id/icon_product"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/products"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product and Services"
+                    android:layout_centerInParent="true"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/icon_product"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/button_bg"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/icon_camera"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/cctv"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Live Camera"
+                    android:layout_centerInParent="true"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/icon_camera"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/button_bg"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/icon_inbox"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/inbox"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inbox"
+                    android:layout_centerInParent="true"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/icon_inbox"/>
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:weightSum="3"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/button_bg"
+                android:layout_margin="10dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/icon_alert"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/alert"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alert"
+                    android:layout_centerInParent="true"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/icon_alert"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/button_bg"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+                <ImageView
+                    android:id="@+id/icon_chat"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/chat"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chat"
+                    android:layout_centerInParent="true"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/icon_chat"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/button_bg"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/icon_settings"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/settings"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Settings"
+                    android:layout_centerInParent="true"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/icon_settings"/>
+            </RelativeLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"></LinearLayout>
+
+</LinearLayout>

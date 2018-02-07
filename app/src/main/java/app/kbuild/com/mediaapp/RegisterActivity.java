@@ -37,13 +37,12 @@ public class RegisterActivity extends AppCompatActivity {
     private  EditText passwordTextField;
 
     private Button sign_up_button;
-    private Button btn_reset_password;
     private Button sign_in_button;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private ProgressBar progressBar;
-    private  Typeface typeface;
+
 
 
 
@@ -59,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         if(firebaseAuth.getCurrentUser()!=null){
-            Intent intent= new Intent(RegisterActivity.this,MainActivity.class);
+            Intent intent= new Intent(RegisterActivity.this,HomeActivity.class);
             startActivity(intent);
             finish();
         }
@@ -69,38 +68,29 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void setUI(){
 
-        AssetManager am = getApplicationContext().getAssets();
-        Typeface typeface = Typeface.createFromAsset(am,String.format(Locale.US, "fonts/%s", "hv.ttf"));
+
 
 
         firstnameTextField=(EditText)findViewById(R.id.firstnameTextField);
-        firstnameTextField.setTypeface(typeface);
         lastnameTextField=(EditText)findViewById(R.id.lastnameTextField);
-        lastnameTextField.setTypeface(typeface);
         phoneTextField=(EditText)findViewById(R.id.phoneTextField);
-        phoneTextField.setTypeface(typeface);
         emailTextField=(EditText)findViewById(R.id.emailTextField);
-        emailTextField.setTypeface(typeface);
         passwordTextField=(EditText)findViewById(R.id.passwordTextField);
-        passwordTextField.setTypeface(typeface);
 
         sign_up_button=(Button)findViewById(R.id.sign_up_button);
-        sign_up_button.setTypeface(typeface);
-        btn_reset_password=(Button)findViewById(R.id.btn_reset_password);
-        btn_reset_password.setTypeface(typeface);
         sign_in_button=(Button)findViewById(R.id.sign_in_button);
-        sign_in_button.setTypeface(typeface);
+
+
 
         final TextInputLayout firstnameTextInputLayout=(TextInputLayout)findViewById(R.id.firstnameTextInputLayout);
+        final TextInputLayout lastnameTextInputLayout=(TextInputLayout)findViewById(R.id.lastnameTextInputLayout);
+        final TextInputLayout phoneTextInputLayout=(TextInputLayout)findViewById(R.id.phoneTextInputLayout);
+        final TextInputLayout emailTextInputLayout=(TextInputLayout)findViewById(R.id.emailTextInputLayout);
+        final TextInputLayout passwordTextInputLayout=(TextInputLayout)findViewById(R.id.passwordTextInputLayout);
 
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
 
-        btn_reset_password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this, ResetPasswordActivity.class));
-            }
-        });
+
 
         sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,19 +99,24 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        firstnameTextField.addTextChangedListener(new TextWatcher() {
+
+
+
+        //Email
+
+        emailTextField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                System.out.println(s);
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(firstnameTextField.getText().toString().isEmpty()){
-                    firstnameTextInputLayout.setErrorEnabled(true);
-                    firstnameTextInputLayout.setError("Firstname cannot be empty!");
+                if(emailTextField.getText().toString().isEmpty()){
+                    emailTextInputLayout.setErrorEnabled(true);
+                    emailTextInputLayout.setError("Email cannot be empty!");
                 }else{
-                    firstnameTextInputLayout.setErrorEnabled(false);
+                    emailTextInputLayout.setErrorEnabled(false);
                 }
             }
 
@@ -131,17 +126,61 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        firstnameTextField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+       emailTextField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(firstnameTextField.getText().toString().isEmpty()){
-                    firstnameTextInputLayout.setErrorEnabled(true);
-                    firstnameTextInputLayout.setError("Username cannot be empty!");
+                if(emailTextField.getText().toString().isEmpty()){
+                    emailTextInputLayout.setErrorEnabled(true);
+                    emailTextInputLayout.setError("Email cannot be empty!");
                 }else{
-                    firstnameTextInputLayout.setErrorEnabled(false);
+                    emailTextInputLayout.setErrorEnabled(false);
                 }
             }
         });
+
+
+        //Password
+
+        passwordTextField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(passwordTextField.getText().toString().isEmpty()){
+                    passwordTextInputLayout.setErrorEnabled(true);
+                    passwordTextInputLayout.setError("Password cannot be empty!");
+                }else{
+                    passwordTextInputLayout.setErrorEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+      passwordTextField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(passwordTextField.getText().toString().isEmpty()){
+                    passwordTextInputLayout.setErrorEnabled(true);
+                    passwordTextInputLayout.setError("Password cannot be empty!");
+                }else{
+                    passwordTextInputLayout.setErrorEnabled(false);
+                }
+            }
+        });
+
+
+        passwordTextInputLayout.setPasswordVisibilityToggleEnabled(true);
+        passwordTextInputLayout.setCounterEnabled(true);
+        passwordTextInputLayout.setCounterMaxLength(8);
+
+
 
 
     }
@@ -155,25 +194,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void registerButtonClicked(View view){
 
-       final String firstname=firstnameTextField.getText().toString();
-        final String lastname=lastnameTextField.getText().toString();
-        final String phone=phoneTextField.getText().toString();
+
         final String email=emailTextField.getText().toString();
         String password=passwordTextField.getText().toString();
 
-        if (TextUtils.isEmpty(firstname)) {
-            Toast.makeText(getApplicationContext(), "Enter your firstname!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (TextUtils.isEmpty(lastname)) {
-            Toast.makeText(getApplicationContext(), "Enter your lastname!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(getApplicationContext(), "Enter your phone number!", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -200,13 +224,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                      String user_id= firebaseAuth.getCurrentUser().getUid();
                      DatabaseReference current_user_db= databaseReference.child(user_id);
-                     current_user_db.child("firstname").setValue(firstname);
-                     current_user_db.child("lastname").setValue(lastname);
-                     current_user_db.child("phone").setValue(phone);
-                     current_user_db.child("image").setValue("default");
+                     current_user_db.child("image").setValue("avatar");
+                     current_user_db.child("firstname").setValue("default");
+                     current_user_db.child("lastname").setValue("default");
+                     current_user_db.child("phone").setValue("default");
                      progressBar.setVisibility(View.GONE);
 
-                     Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
+                     Intent intent=new Intent(RegisterActivity.this,SetupActivity.class);
                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                      startActivity(intent);
                      finish();

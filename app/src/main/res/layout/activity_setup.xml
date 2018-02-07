@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        >
+        <ImageButton
+            android:id="@+id/profile_img"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/profile_image"
+            android:layout_centerInParent="true"
+            android:onClick="onProfileImageClicked"/>
+    </RelativeLayout>
+    
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstnameTextInputLayout"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="6dp">
+
+        <EditText
+            android:id="@+id/firstnameTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/firstname"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/text_color" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lastnameTextInputLayout"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="6dp">
+
+        <EditText
+            android:id="@+id/lastnameTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lastname"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/text_color"  />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/phoneTextInputLayout"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="6dp">
+
+        <EditText
+            android:id="@+id/phoneTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mobile_phone"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/text_color"/>
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/update_profile"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="@string/update_profile"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="1dp"
+        android:onClick="registerButtonClicked"
+        />
+
+
+    <ProgressBar
+        android:id="@+id/progressBar200"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone" />
+
+</LinearLayout>

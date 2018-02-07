@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_products"
+            android:icon="@drawable/products"
+            android:title="Products" />
+        <item
+            android:id="@+id/nav_alert"
+            android:icon="@drawable/alert"
+            android:title="Security Alert" />
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/cctv"
+            android:title="Live Camera" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/chat"
+            android:title="Chat" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/gallery"
+            android:title="Gallery and News" />
+    </group>
+
+    <item android:title="Tools">
+        <menu>
+            <item
+                android:id="@+id/nav_inbox"
+                android:icon="@drawable/inbox"
+                android:title="Inbox" />
+
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/settings"
+                android:title="Settings" />
+
+
+            <item
+                android:id="@+id/nav_social"
+                android:icon="@drawable/social"
+                android:title="Social Media" />
+        </menu>
+    </item>
+
+</menu>

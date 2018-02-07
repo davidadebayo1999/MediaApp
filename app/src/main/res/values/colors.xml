@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#FBC02D</color>
+    <!--<color name="colorPrimaryDark">#FF8F00</color>-->
+    <color name="colorPrimaryDark">#F57F17</color>
+    <color name="colorAccent">#FFAB00</color>
+
+    <color name="nav_bg">#898b8c</color>
+
+    <color name="text_tint">#FFAB00</color>
+    <color name="button_text_color">#ffffff</color>
+    <color name="text_color">#90A4AE</color>
+    <color name="colorError">#F44336</color>
 
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>

@@ -1,10 +1,15 @@
 package app.kbuild.com.mediaapp;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,33 +20,48 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Locale;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText inputEmail, inputPassword;
+    private EditText emailEditField, passwordEditText;
+    private TextInputLayout emailTextInputLayout,passwordTextInputLayout;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
     private Button btnSignup, btnLogin, btnReset;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
-
-        if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
-        }
-
         // set the view now
         setContentView(R.layout.activity_login);
 
-      /*  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
+        firebaseAuth=FirebaseAuth.getInstance();
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("Users");
 
-        inputEmail = (EditText) findViewById(R.id.email);
-        inputPassword = (EditText) findViewById(R.id.password);
+
+        if(firebaseAuth.getCurrentUser()!=null){
+            Intent intent= new Intent(LoginActivity.this,HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+       setUI();
+    }
+
+    public void setUI(){
+
+
+
+
+        emailEditField = (EditText) findViewById(R.id.emailEditField2);
+        emailTextInputLayout=(TextInputLayout)findViewById(R.id.emailTextInputLayout2);
+        passwordEditText = (EditText) findViewById(R.id.passwordEditText2);
+        passwordTextInputLayout=(TextInputLayout)findViewById(R.id.passwordTextInputLayout2);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnSignup = (Button) findViewById(R.id.btn_signup);
         btnLogin = (Button) findViewById(R.id.btn_login);
@@ -67,8 +87,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = inputEmail.getText().toString();
-                final String password = inputPassword.getText().toString();
+                String email = emailEditField.getText().toString();
+                final String password = passwordEditText.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -94,12 +114,12 @@ public class LoginActivity extends AppCompatActivity {
                                 if (!task.isSuccessful()) {
                                     // there was an error
                                     if (password.length() < 6) {
-                                        inputPassword.setError(getString(R.string.minimum_password));
+                                        passwordEditText.setError(getString(R.string.minimum_password));
                                     } else {
                                         Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -107,5 +127,97 @@ public class LoginActivity extends AppCompatActivity {
                         });
             }
         });
+
+
+
+
+
+        ////  Email
+
+        emailEditField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(emailEditField.getText().toString().isEmpty()){
+                    emailTextInputLayout.setErrorEnabled(true);
+                    emailTextInputLayout.setError("Email cannot be empty!");
+                }else{
+                    emailTextInputLayout.setErrorEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+        emailEditField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(emailEditField.getText().toString().isEmpty()){
+                    emailTextInputLayout.setErrorEnabled(true);
+                    emailTextInputLayout.setError("Email cannot be empty!");
+                }else{
+                    emailTextInputLayout.setErrorEnabled(false);
+                }
+            }
+        });
+
+
+        //Password
+
+        passwordEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(passwordEditText.getText().toString().isEmpty()){
+                    passwordTextInputLayout.setErrorEnabled(true);
+                    passwordTextInputLayout.setError("Password cannot be empty!");
+                }else{
+                    passwordTextInputLayout.setErrorEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        passwordEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(passwordEditText.getText().toString().isEmpty()){
+                    passwordTextInputLayout.setErrorEnabled(true);
+                    passwordTextInputLayout.setError("Password cannot be empty!");
+                }else{
+                    passwordTextInputLayout.setErrorEnabled(false);
+                }
+            }
+        });
+
+
+
+
+
+
+        passwordTextInputLayout.setPasswordVisibilityToggleEnabled(true);
+        passwordTextInputLayout.setCounterEnabled(true);
+        passwordTextInputLayout.setCounterMaxLength(8);
+
+
+
+
     }
+
 }
